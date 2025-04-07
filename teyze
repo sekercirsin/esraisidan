@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Konuşma Zarı</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    h1 {
+      font-size: 3rem;
+      color: #d94f4f;
+      margin-bottom: 1rem;
+    }
+    #dice {
+      width: 120px;
+      height: 120px;
+      background-color: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    #dice:active {
+      transform: scale(0.95);
+    }
+    #question {
+      margin-top: 2rem;
+      font-size: 1.5rem;
+      color: #333;
+      padding: 0 1rem;
+      max-width: 600px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Konuşma Zarı 🎲</h1>
+  <div id="dice">🎲</div>
+  <div id="question">Zarı atmak için tıkla!</div>
+
+  <audio id="rollSound">
+    <source src="https://www.soundjay.com/misc/sounds/dice-roll-1.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const questions = [
+      "ZOR BİR DURUMLA NASIL BAŞA ÇIKTIĞINI ANLATIR MISIN?",
+      "EN SEVDİĞİN TATİL ANIN NEYDİ?",
+      "KENDİNİ 3 KELİMEYLE TANIMLAR MISIN?",
+      "BUGÜN BİRİYLE YER DEĞİŞTİRSEN KİM OLURDU?",
+      "BİR GÜN BOYUNCA İSTEDİĞİNİ YAPABİLSEN NE YAPARDIN?",
+      "EN SON NE ZAMAN KAHKAHA ATTIN? NEYE GÜLDÜN?"
+    ];
+
+    const dice = document.getElementById('dice');
+    const questionDiv = document.getElementById('question');
+    const rollSound = document.getElementById('rollSound');
+
+    dice.addEventListener('click', () => {
+      rollSound.play();
+      const randomIndex = Math.floor(Math.random() * questions.length);
+      questionDiv.textContent = questions[randomIndex];
+    });
+  </script>
+</body>
+</html>
